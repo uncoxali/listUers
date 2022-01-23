@@ -26,30 +26,36 @@ export default function Home() {
 
   return (
     <div className="container mt-5">
-      {users?.map((item, index) => (
-        <div key={index} className="card mt-2">
-          <div className="card-body">
-            <h5 className="card-title">Name : {item.name}</h5>
-            <h5 className="card-title">UserName: {item.username}</h5>
-            <h5 className="card-title">Email : {item.email}</h5>
-            <h5 className="card-title">Phone : {item.phone}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">
-              WebSite : <a href={item.website}>{item.website}</a>
-            </h6>
-            <p className="card-text">{item.company.catchPhrase}</p>
-            <Link to={`about/${item.id}`} className="btn btn-info btn-sm">
-              visit
-            </Link>
-          </div>
-          <button
-            onClick={() => handleDelete(item?.id)}
-            className="btn btn-danger btn-sm"
-          >
-            {" "}
-            delete
-          </button>
+      {users ? (
+        <div>
+          {users?.map((item, index) => (
+            <div key={index} className="card mt-2">
+              <div className="card-body">
+                <h5 className="card-title">Name : {item.name}</h5>
+                <h5 className="card-title">UserName: {item.username}</h5>
+                <h5 className="card-title">Email : {item.email}</h5>
+                <h5 className="card-title">Phone : {item.phone}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">
+                  WebSite : <a href={item.website}>{item.website}</a>
+                </h6>
+                <p className="card-text">{item.company.catchPhrase}</p>
+                <Link to={`about/${item.id}`} className="btn btn-info btn-sm">
+                  visit
+                </Link>
+              </div>
+              <button
+                onClick={() => handleDelete(item?.id)}
+                className="btn btn-danger btn-sm"
+              >
+                {" "}
+                delete
+              </button>
+            </div>
+          ))}
         </div>
-      ))}
+      ) : (
+        <p>Loding...</p>
+      )}
     </div>
   );
 }
